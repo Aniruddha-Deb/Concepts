@@ -4,9 +4,9 @@ import util.IOUtils;
 
 /**
  * Contains a program to sort an array of integers in Ascending order using 
- * the Bubble sort algorithm 
+ * the Selection sort algorithm 
  */
-public class BubbleSort {
+public class SelectionSort {
 
 	public static void main( String[] args ) {
 
@@ -15,14 +15,16 @@ public class BubbleSort {
 		IOUtils.printArray( arrayToSort );
 		
 		for( int i=0; i<arrayToSort.length; i++ ) {
-			for( int j=0; j<arrayToSort.length-1-i; j++ ) {
-				if( arrayToSort[j] > arrayToSort[j+1] ) {
-					// swap the numbers with each other
-					int temp = arrayToSort[j];
-					arrayToSort[j] = arrayToSort[j+1];
-					arrayToSort[j+1] = temp;
+			int index = i;
+			for( int j=i+1; j<arrayToSort.length; j++ ) {
+				if( arrayToSort[j] < arrayToSort[index] ) {
+					index = j;
 				}
 			}
+			
+			int temp = arrayToSort[i];
+			arrayToSort[i] = arrayToSort[index];
+			arrayToSort[index] = temp;			
 		}
 		
 		IOUtils.printSortedArray( arrayToSort );

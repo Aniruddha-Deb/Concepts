@@ -10,7 +10,7 @@ import algorithms.sorting.sorts.InsertionSort;
 import algorithms.sorting.sorts.SelectionSort;
 import algorithms.sorting.sorts.quicksort.MultiThreadedQuickSort;
 import algorithms.sorting.sorts.quicksort.SingleThreadedQuickSort;
-import data.LargeArray;
+import util.LargeArray;
 
 public class SortingTimeBenchmark {
 	

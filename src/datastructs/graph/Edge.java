@@ -4,15 +4,12 @@ public class Edge {
 
 	private Node leftNode = null;
 	private Node rightNode = null;
+	
+	public Edge( Node leftNode, Node rightNode ) {
+		this.leftNode = leftNode;
+		this.rightNode = rightNode;
+	}
 
-	public void addLeft( Node n ) {
-		leftNode = n;
-	}
-	
-	public void addRight( Node n ) {
-		rightNode = n;
-	}
-	
 	public Node getLeft() {
 		return leftNode;
 	}

@@ -8,7 +8,7 @@ import datastructs.graph.Node;
 
 public class Tree {
 	
-	public TreeNode rootNode = null;	
+	private TreeNode rootNode = null;
 	
 	public Tree( Graph g ) {
 		rootNode = new TreeNode();
@@ -41,5 +41,34 @@ public class Tree {
 		
 		return longestChain;
 	}
+
+	public TreeNode getRootNode(){
+		return rootNode;
+	}
 	
+	@Override
+	public String toString(){
+		printAllNodes( rootNode );
+		return strRep;
+	}
+	
+	private int recLev = 0;
+	private String strRep = ""; 
+	private void printAllNodes( TreeNode parentNode ) {
+	
+		for( int i=0; i<recLev; i++ ) {
+			if( i == recLev - 1 ) {
+				strRep += "└---";
+			}
+			else {
+				strRep += "    ";
+			}
+		}
+		strRep += "X\n";
+        recLev++;
+        for( TreeNode n : parentNode.getChildNodes() ) {
+            printAllNodes( n );
+        }
+        recLev--;
+	}
 }

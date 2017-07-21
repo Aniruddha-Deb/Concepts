@@ -12,20 +12,20 @@ public class Tree {
 	
 	public Tree( Graph g ) {
 		rootNode = new TreeNode();
-		TreeNode parentSubNode = getNode( g.getNodes().get( 0 ), rootNode );
+		TreeNode parentSubNode = getNode( g.getNodes().get( 1 ), rootNode );
 		rootNode.addNode( parentSubNode );
 	}
 	
 	private TreeNode getNode( Node node, TreeNode parentNode ) {
 		List<TreeNode> tNodes = new ArrayList<>();
 		TreeNode parent = new TreeNode( parentNode );
+		if( node.getRightNodes().size() == 0 ) {
+			return parent;
+		}
 		for( Node n : node.getRightNodes() ) {
-			if( n.getRightNodes().size() == 0 ) {
-				return parent;
-			}
-			else {
-				System.out.println( "Adding node" );
-				tNodes.add( getNode( n, parent ) );
+			TreeNode sn = getNode( n, parent );
+			if( sn != null ) {
+				tNodes.add( sn );
 			}
 		}
 		parent.addNodes( tNodes );

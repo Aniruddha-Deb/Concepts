@@ -27,7 +27,6 @@ public class Node {
 		List<Node> rightNodes = new ArrayList<>();
 		for( Edge e : adjacentEdges ) {
 			if( e.getLeft().equals( this ) ) {
-				System.out.println( "Adding " + e.getRight().getName() + " to right of " + name );
 				rightNodes.add( e.getRight() );
 			}
 		}
@@ -51,7 +50,6 @@ public class Node {
 	
 	@Override
 	public boolean equals( Object obj ){
-		System.out.println( ((Node)obj).getName() + this.getName() );
 		return obj.hashCode() == this.hashCode();
 	}
 	

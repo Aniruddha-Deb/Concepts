@@ -3,6 +3,8 @@ package datastructs.graph;
 import java.util.ArrayList;
 import java.util.List;
 
+import datastructs.tree.Tree;
+
 public class Graph {
 	
 	private List<Node> nodes = null;
@@ -22,7 +24,7 @@ public class Graph {
 	public static void main( String[] args ){
 		Graph g = new Graph();
 		Node n1 = new Node( "A", 1 );
-		Node n2 = new Node( "B", 1 );
+		Node n2 = new Node( "B", 2 );
 		Node n3 = new Node( "C", 1 );
 
 		n1.connect( n2 );
@@ -31,7 +33,8 @@ public class Graph {
 		g.addNode( n1 );
 		g.addNode( n2 );
 		g.addNode( n3 );
-		
-		System.out.println( g.getNodes().toString() );
+
+		Tree t = new Tree( g );
+		System.out.println( "Created tree" );
 	}
 }

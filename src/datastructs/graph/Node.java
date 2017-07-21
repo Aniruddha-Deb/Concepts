@@ -20,7 +20,18 @@ public class Node {
 	 */
 	public void connect( Node n ){
 		this.addEdge( new Edge( this, n ) );
-		n.addEdge( new Edge( n, this ) );
+		n.addEdge( new Edge( this, n ) );
+	}
+	
+	public List<Node> getRightNodes() {
+		List<Node> rightNodes = new ArrayList<>();
+		for( Edge e : adjacentEdges ) {
+			if( e.getLeft().equals( this ) ) {
+				System.out.println( "Adding " + e.getRight().getName() + " to right of " + name );
+				rightNodes.add( e.getRight() );
+			}
+		}
+		return rightNodes;
 	}
 	
 	private void addEdge( Edge e ) throws IllegalArgumentException {
@@ -36,6 +47,17 @@ public class Node {
 	
 	public List<Edge> getEdges() {
 		return adjacentEdges;
+	}
+	
+	@Override
+	public boolean equals( Object obj ){
+		System.out.println( ((Node)obj).getName() + this.getName() );
+		return obj.hashCode() == this.hashCode();
+	}
+	
+	@Override
+	public int hashCode(){
+		return name.hashCode();
 	}
 	
 	@Override

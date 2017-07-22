@@ -8,10 +8,25 @@ public class TreeNode {
 	private TreeNode parentNode = null;
 	private List<TreeNode> childNodes = null;
 	private boolean navigated = false;
+	private String name = null;
 	
-	public TreeNode( TreeNode parentNode ) {
+	public TreeNode( TreeNode parentNode, String name ) {
 		this.parentNode = parentNode;
+		this.name = name;
 		childNodes = new ArrayList<>();
+	}
+	
+	public String getName(){
+		return name;
+	}
+	
+	public void setParentNode( TreeNode parentNode ) {
+		this.parentNode = parentNode;
+	}
+	
+	public TreeNode( String name ) {
+		childNodes = new ArrayList<>();
+		this.name = name;
 	}
 	
 	public void toggleNavigated() {
@@ -26,17 +41,13 @@ public class TreeNode {
 		navigated = false;
 	}
 	
-	public TreeNode() {
-		childNodes = new ArrayList<>();
-	}
-	
-	public void addNodes( List<TreeNode> tNodes ) {
+	public void addChildNodes( List<TreeNode> tNodes ) {
 		if( tNodes.size() != 0 ) {
 			childNodes.addAll( tNodes );
 		}
 	}
 	
-	public void addNode( TreeNode n ) {
+	public void addChildNode( TreeNode n ) {
 		childNodes.add( n );
 	}
 

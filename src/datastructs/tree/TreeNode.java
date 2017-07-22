@@ -7,10 +7,23 @@ public class TreeNode {
 	
 	private TreeNode parentNode = null;
 	private List<TreeNode> childNodes = null;
+	private boolean navigated = false;
 	
 	public TreeNode( TreeNode parentNode ) {
 		this.parentNode = parentNode;
 		childNodes = new ArrayList<>();
+	}
+	
+	public void toggleNavigated() {
+		navigated = !navigated;
+	}
+	
+	public boolean isNavigated() {
+		return navigated;
+	}
+	
+	void setNavigated( boolean navigated ) {
+		navigated = false;
 	}
 	
 	public TreeNode() {

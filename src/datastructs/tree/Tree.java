@@ -31,17 +31,32 @@ public class Tree {
 		parent.addNodes( tNodes );
 		return parent;
 	}
+	
+	private void setUnexplored( TreeNode n ) {
+		if( n.getChildNodes().isEmpty() ) {
+			n.setNavigated( false );
+		}
+		else {
+			for( TreeNode subNode : n.getChildNodes() ) {
+				setUnexplored( subNode );
+			}
+		}
+	}
 
-	public int getLongestChain() {
-		return getLongestChain( rootNode );
+	public int getTotalNodes() {
+		setUnexplored( rootNode );
+		return getNumNodes( rootNode );
 	}
 	
-	private int getLongestChain( TreeNode n ) {
-		int longestChain = 0;
-		
-		return longestChain;
+	int numNodes = 0;
+	private int getNumNodes( TreeNode n ) {
+		numNodes++;
+		for( TreeNode sn : n.getChildNodes() ) {
+			getNumNodes( sn );
+		}
+		return numNodes;
 	}
-
+	
 	public TreeNode getRootNode(){
 		return rootNode;
 	}

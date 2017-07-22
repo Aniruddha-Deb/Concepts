@@ -44,6 +44,7 @@ public class Graph {
 
 		Tree t = new Tree( g );
 		System.out.println( t.toString() );
+		System.out.println( t.getTotalNodes() );
 		System.out.println( "Created tree" );
 	}
 }

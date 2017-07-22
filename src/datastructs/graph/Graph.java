@@ -22,28 +22,39 @@ public class Graph {
 	}
 	
 	public static void main( String[] args ){
-		Graph g = new Graph();
-		Node n1 = new Node( "A", 1 );
-		Node n2 = new Node( "B", 3 );
-		Node n3 = new Node( "C", 2 );
-		Node n4 = new Node( "D", 2 );
-		Node n5 = new Node( "E", 3 );
-		Node n6 = new Node( "F", 1 );
-		Node n7 = new Node( "G", 1 );
-		Node n8 = new Node( "H", 1 );
+		Graph G = new Graph();
+		Node a = new Node( "A", 1 );
+		Node b = new Node( "B", 3 );
+		Node c = new Node( "C", 3 );
+		Node d = new Node( "D", 3 );
+		Node e = new Node( "E", 3 );
+		Node f = new Node( "F", 3 );
+		Node g = new Node( "G", 3 );
+		Node h = new Node( "H", 5 );
+		Node i = new Node( "I", 3 );
+		Node j = new Node( "J", 3 );
+		Node k = new Node( "K", 3 );
+		Node l = new Node( "L", 3 );
+		Node m = new Node( "M", 3 );
+		Node n = new Node( "N", 3 );
 
-		n1.connect( n2 );
-		n2.connect( n3 );
-		n2.connect( n4 );
-		n3.connect( n8 );
-		n4.connect( n5 );
-		n5.connect( n6 );
-		n5.connect( n7 );
+		a.connect( b );
+		b.connect( c );
+		b.connect( d );
+		d.connect( e );
+		d.connect( f );
+		e.connect( g );
+		f.connect( h );
+		c.connect( i );
+		c.connect( j );
+		j.connect( k );
+		j.connect( m );
+		k.connect( n );
 		
-		g.addNode( n1 );
-		g.addNode( n2 );
+		G.addNode( a );
+		G.addNode( b );
 
-		Tree t = new Tree( g );
+		Tree t = new Tree( G );
 		System.out.println( t.toString() );
 		System.out.println( "Num nodes: " + t.getNumNodes() );
 		System.out.println( "Deepest level: " + t.getDeepestLevel() );

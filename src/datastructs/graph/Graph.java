@@ -44,6 +44,7 @@ public class Graph {
 		d.connect( e );
 		d.connect( f );
 		e.connect( g );
+		g.connect( l );
 		f.connect( h );
 		c.connect( i );
 		c.connect( j );
@@ -57,7 +58,9 @@ public class Graph {
 		Tree t = new Tree( G );
 		System.out.println( t.toString() );
 		System.out.println( "Num nodes: " + t.getNumNodes() );
+		System.out.println( t.getReversedTree().getDeepestLevel() );
 		System.out.println( "Deepest level: " + t.getDeepestLevel() );
 		System.out.println( "Longest path: " + t.getLongestPath() );
+		System.out.println( t.getReversedTree().toString() );
 	}
 }

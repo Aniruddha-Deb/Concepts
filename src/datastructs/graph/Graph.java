@@ -56,11 +56,13 @@ public class Graph {
 		G.addNode( b );
 
 		Tree t = new Tree( G );
+		System.out.println( "Created tree" );
+		System.out.println( "Original: " );
 		System.out.println( t.toString() );
+		System.out.println( "Reverse: " );
+		System.out.println( t.getReversedTree().toString() );
 		System.out.println( "Num nodes: " + t.getNumNodes() );
-		System.out.println( t.getReversedTree().getDeepestLevel() );
 		System.out.println( "Deepest level: " + t.getDeepestLevel() );
 		System.out.println( "Longest path: " + t.getLongestPath() );
-		System.out.println( t.getReversedTree().toString() );
 	}
 }

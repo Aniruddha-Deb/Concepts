@@ -1,9 +1,12 @@
 package datastructs.tree;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TreeNode {
+public class TreeNode implements Serializable{
+	
+	private static final long serialVersionUID = -5046991069846257269L;
 	
 	private TreeNode parentNode = null;
 	private List<TreeNode> childNodes = null;

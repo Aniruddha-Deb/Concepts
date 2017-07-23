@@ -1,13 +1,19 @@
 package datastructs.tree;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import datastructs.graph.Graph;
 import datastructs.graph.Node;
 
-public class Tree {
+public class Tree implements Serializable{
 	
+	private static final long serialVersionUID = 8951708210701233864L;
 	private TreeNode rootNode = null;
 	
 	public Tree( Graph g ) {
@@ -88,16 +94,38 @@ public class Tree {
 	
 	private TreeNode getDeepestNodeOf( TreeNode n ) {
 		TreeNode deepestNode = n;
+		int deepestLevel = 0;
 		for( TreeNode sn : n.getChildNodes() ) {
-			deepestNode = getDeepestNodeOf( sn );
+			TreeNode lowestNode = getDeepestNodeOf( sn );
+			int len = getDeepestLevel( sn );
+			if( len > deepestLevel ) {
+				deepestNode = lowestNode;
+				deepestLevel = len;
+			}
 		}
 		return deepestNode;
 	}
 	
 	public Tree getReversedTree() {
-		TreeNode root = getDeepestNodeOf( rootNode );
+		Tree duplicate = this.getDuplicateTree();
+		TreeNode root = getDeepestNodeOf( duplicate.getRootNode() );
 		TreeNode revRoot = reverseTree( root, null );
 		return new Tree( revRoot );
+	}
+	
+	public Tree getDuplicateTree() {
+		try {
+			ByteArrayOutputStream baos = new ByteArrayOutputStream();
+			ObjectOutputStream oos = new ObjectOutputStream( baos );
+			oos.writeObject( this );
+			oos.flush();
+			
+			ByteArrayInputStream bais = new ByteArrayInputStream( baos.toByteArray() );
+			ObjectInputStream ois = new ObjectInputStream( bais );
+			return (Tree)ois.readObject();
+		} catch( Exception ex ) {
+			return null;
+		}
 	}
 	
 	private TreeNode reverseTree( TreeNode rootNode, TreeNode parent ) {

@@ -24,7 +24,7 @@ public class Graph {
 	public static void main( String[] args ){
 		Graph G = new Graph();
 		Node a = new Node( "A", 1 );
-		Node b = new Node( "B", 3 );
+		Node b = new Node( "B", 4 );
 		Node c = new Node( "C", 3 );
 		Node d = new Node( "D", 3 );
 		Node e = new Node( "E", 3 );
@@ -37,20 +37,30 @@ public class Graph {
 		Node l = new Node( "L", 3 );
 		Node m = new Node( "M", 3 );
 		Node n = new Node( "N", 3 );
+		Node o = new Node( "O", 3 );
+		Node p = new Node( "P", 3 );
+		Node q = new Node( "Q", 3 );
+		Node r = new Node( "R", 3 );
+		Node s = new Node( "S", 3 );
 
 		a.connect( b );
 		b.connect( c );
 		b.connect( d );
 		d.connect( e );
-		d.connect( f );
+		b.connect( f );
 		e.connect( g );
 		g.connect( l );
 		f.connect( h );
 		c.connect( i );
-		c.connect( j );
+		l.connect( j );
 		j.connect( k );
 		j.connect( m );
 		k.connect( n );
+		h.connect( o );
+		o.connect( p );
+		p.connect( q );
+		q.connect( r );
+		r.connect( s );
 		
 		G.addNode( a );
 		G.addNode( b );

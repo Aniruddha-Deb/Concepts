@@ -10,7 +10,6 @@ public class TreeNode implements Serializable{
 	
 	private TreeNode parentNode = null;
 	private List<TreeNode> childNodes = null;
-	private boolean navigated = false;
 	private String name = null;
 	
 	public TreeNode( TreeNode parentNode, String name ) {
@@ -30,18 +29,6 @@ public class TreeNode implements Serializable{
 	public TreeNode( String name ) {
 		childNodes = new ArrayList<>();
 		this.name = name;
-	}
-	
-	public void toggleNavigated() {
-		navigated = !navigated;
-	}
-	
-	public boolean isNavigated() {
-		return navigated;
-	}
-	
-	void setNavigated( boolean navigated ) {
-		navigated = false;
 	}
 	
 	public void addChildNodes( List<TreeNode> tNodes ) {

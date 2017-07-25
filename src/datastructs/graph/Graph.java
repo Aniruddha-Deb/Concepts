@@ -7,22 +7,31 @@ import datastructs.tree.Tree;
 
 public class Graph {
 	
-	private List<Node> nodes = null;
+	private Node firstNode = null;
 	
-	public Graph() {
-		nodes = new ArrayList<>();
+	public Graph( Node firstNode ) {
+		this.firstNode = firstNode;
 	}
 	
-	public void addNode( Node n ) {
-		nodes.add( n );
+	public Node getFirstNode() {
+		return firstNode;
 	}
 	
-	public List<Node> getNodes(){
-		return nodes;
+	public void addNodeTo( String nodeName, Node rightNode ) {
+		addNodeTo( firstNode, nodeName, rightNode );
 	}
 	
+	private void addNodeTo( Node root, String nodeName, Node rightNode ) {
+		if( root.getName().equals( nodeName ) ) {
+			root.connect( rightNode );
+		}
+		for( Node n : root.getRightNodes() ) {
+			addNodeTo( n, nodeName, rightNode );
+		}			
+	}
+ 	
 	public static void main( String[] args ){
-		Graph G = new Graph();
+		Graph G = new Graph( new Node( "X", 3 ) );
 		Node a = new Node( "A", 1 );
 		Node b = new Node( "B", 4 );
 		Node c = new Node( "C", 3 );
@@ -43,28 +52,12 @@ public class Graph {
 		Node r = new Node( "R", 3 );
 		Node s = new Node( "S", 3 );
 
-		a.connect( b );
-		b.connect( c );
-		b.connect( d );
-		d.connect( e );
-		b.connect( f );
-		e.connect( g );
-		g.connect( l );
-		f.connect( h );
-		c.connect( i );
-		l.connect( j );
-		j.connect( k );
-		j.connect( m );
-		k.connect( n );
-		h.connect( o );
-		o.connect( p );
-		p.connect( q );
-		q.connect( r );
-		r.connect( s );
+		G.addNodeTo( "X", a );
+		G.addNodeTo( "X", b );
+		G.addNodeTo( "B", c );
+		G.addNodeTo( "C", d );
+		G.addNodeTo( "C", e );
 		
-		G.addNode( a );
-		G.addNode( b );
-
 		Tree t = new Tree( G );
 		System.out.println( "Created tree" );
 		System.out.println( "Original: " );

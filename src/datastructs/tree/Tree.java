@@ -17,10 +17,10 @@ public class Tree implements Serializable{
 	private TreeNode rootNode = null;
 	
 	public Tree( Graph g ) {
-		rootNode = new TreeNode( g.getNodes().get( 0 ).getName() );
-		if( g.getNodes().size() > 1 ) {
-			TreeNode parentSubNode = getNode( g.getNodes().get( 1 ), rootNode );
-			rootNode.addChildNode( parentSubNode );
+		Node rn = g.getFirstNode();
+		rootNode = new TreeNode( null, rn.getName() );
+		for( Node n : rn.getRightNodes() ) {
+			rootNode.addChildNode( getNode( n, rootNode ) );
 		}
 	}
 	
@@ -48,19 +48,7 @@ public class Tree implements Serializable{
 		return parent;
 	}
 	
-	private void setUnexplored( TreeNode n ) {
-		if( n.getChildNodes().isEmpty() ) {
-			n.setNavigated( false );
-		}
-		else {
-			for( TreeNode subNode : n.getChildNodes() ) {
-				setUnexplored( subNode );
-			}
-		}
-	}
-
 	public int getNumNodes() {
-		setUnexplored( rootNode );
 		return getNumChildNodes( rootNode );
 	}
 
@@ -113,6 +101,15 @@ public class Tree implements Serializable{
 		return new Tree( revRoot );
 	}
 	
+	private TreeNode reverseTree( TreeNode rootNode, TreeNode parent ) {
+		if( rootNode.getParentNode() != null ) {			
+			rootNode.getParentNode().getChildNodes().remove( rootNode );
+			rootNode.addChildNode( reverseTree( rootNode.getParentNode(), rootNode ) );
+		}
+		rootNode.setParentNode( parent );
+		return rootNode;
+	}
+	
 	public Tree getDuplicateTree() {
 		try {
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -126,15 +123,6 @@ public class Tree implements Serializable{
 		} catch( Exception ex ) {
 			return null;
 		}
-	}
-	
-	private TreeNode reverseTree( TreeNode rootNode, TreeNode parent ) {
-		if( rootNode.getParentNode() != null ) {			
-			rootNode.getParentNode().getChildNodes().remove( rootNode );
-			rootNode.addChildNode( reverseTree( rootNode.getParentNode(), rootNode ) );
-		}
-		rootNode.setParentNode( parent );
-		return rootNode;
 	}
 	
 	public int getLongestPath() {

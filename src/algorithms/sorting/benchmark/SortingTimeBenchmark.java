@@ -23,6 +23,10 @@ public class SortingTimeBenchmark {
 		sorts.add( new MultiThreadedQuickSort() );
 	}
 
+	/**
+	 * 
+	 * For Ideal results, run with a stack size of 16M
+	 */
 	public static void main( String[] args ) throws IOException{
 
 		int[] benchmarkArray = LargeArray.getArray();
